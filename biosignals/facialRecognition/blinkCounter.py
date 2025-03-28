@@ -1,6 +1,7 @@
 from imageFeed import camera 
 from cvzone.FaceMeshModule import FaceMeshDetector
 import cv2 as cv
+import time 
 
 faceDetector = FaceMeshDetector(staticMode= False, maxFaces=1, minDetectionCon= 0.5, minTrackCon= 0.5)
 
@@ -27,11 +28,14 @@ noseLandmarks = [193, 168, 417, 122, 351, 196, 419, 3, 248, 236, 456, 198, 420, 
 # Landmark Punkte des Munds 
 mouthLandmakrs = [0, 267, 269, 270, 409, 306, 375, 321, 405, 314, 17, 84, 181, 91, 146, 61, 185, 40, 39, 37]
 
-
+prev_frame_time = 0
+new_frame_time = 0
 
 while True : 
 
 	ret, frame = camera.read()
+
+	new_frame_time = time.time()
 
 	# Mash wird auf das Bild der Kamera angewendet 
 	frame, faces = faceDetector.findFaceMesh(frame)
@@ -41,12 +45,19 @@ while True :
 		face = faces[0]
 		for landmark in leftEyeLandmarks, rightEyeLandmakrs: 
 			for id in landmark:
-				cv.circle(frame, face[id], 5, (255,0,255), cv2.BORDER_DEFAULT)
+				cv.circle(frame, face[id], 5, (255,0,255), cv.BORDER_DEFAULT)
 
 		lengthHor, _ = faceDetector.findDistance(face[leftLengthHor[0]], face[leftLengthHor[1]])
 		lengthVert, _ = faceDetector.findDistance(face[leftLengthVert[0]], face[leftLengthVert[1]])
 		cv.line(frame, face[leftLengthHor[0]], face[leftLengthHor[1]], (255,0,0), 3)
 		cv.line(frame, face[leftLengthVert[0]], face[leftLengthVert[1]], (255,0,0), 3)
+
+		fps = 1/(new_frame_time-prev_frame_time)
+		prev_frame_time = new_frame_time
+
+		fps = str(int(fps))
+
+		cv.putText(frame, fps, (7, 70), cv.FONT_HERSHEY_SIMPLEX, 3, (100,100,0), 3, cv.LINE_AA)
 
 	# Anzeige des Bilds mit aufgelegtem Mash
 	cv.imshow('FaceDetection', frame)

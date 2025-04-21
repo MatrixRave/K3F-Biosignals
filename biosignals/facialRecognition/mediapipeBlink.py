@@ -86,11 +86,7 @@ while True:
 
         plt.update(frame, leftBlinkRatio = leftBlinkRatio, rightBlinkRatio = rightBlinkRatio, blinkRatio = blinkRatio, fps = fps)
         
-       
-
     cv.imshow("FaceDetection", frame)
-   
-
     if cv.waitKey(1) & 0xFF == ord('q'):
         break
 

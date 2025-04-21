@@ -9,7 +9,7 @@ leftEye, = ax.plot([], [], label='Linkes Auge')
 rightEye, = ax.plot([], [], label='Rechtes Auge')
 combinedEyes, = ax.plot([], [], label='Kombination')
 
-ax.set_ylim(0,80)
+ax.set_ylim(5,90)
 ax.set_xlabel('Zeit (s)')
 ax.set_ylabel('BlinkRatio')
 ax.legend()
@@ -52,6 +52,9 @@ def updateLivePlt():
 	ani = mtpltanim.FuncAnimation(fig, update, interval=5000)
 	mtplt.tight_layout()
 	mtplt.show()
+	if mtplt.waitforbuttonpress(1) & 0xFF == ord('q'):
+		mtplt.close
+
 
 
 

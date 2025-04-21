@@ -1,3 +1,4 @@
 cvzone==1.6.1
 mediapipe==0.10.21
 matplotlib==3.10.1
+influxdb-client==1.48.0

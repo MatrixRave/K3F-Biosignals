@@ -90,7 +90,7 @@ while True:
     if cv.waitKey(1) & 0xFF == ord('q'):
         break
 
-plt.updateLivePlt()
+
 camera.release()
 cv.destroyAllWindows()
 

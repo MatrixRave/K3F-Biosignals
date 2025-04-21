@@ -4,6 +4,7 @@ import mediapipe as mp
 import time
 import math
 from cvzone.PlotModule import LivePlot
+import plotting as plt
 
 # MediaPipe Initialisierung
 mp_face_mesh = mp.solutions.face_mesh
@@ -78,19 +79,22 @@ while True:
         leftBlinkRatio = (leftVert / leftHor) * 10
         rightBlinkRatio = (rightVert / rightHor) * 10
         blinkRatio = (leftBlinkRatio + rightBlinkRatio) / 2
-        blinkPlot = plot.update(blinkRatio)
-        cv.imshow("BlinkPlot", blinkPlot)
 
-        # FPS anzeigen
+          # FPS anzeigen
         fps = 1 / (new_frame_time - prev_frame_time)
         prev_frame_time = new_frame_time
-        cv.putText(frame, f'FPS: {int(fps)}', (10, 70), cv.FONT_HERSHEY_SIMPLEX, 2, (100, 255, 100), 2)
+
+        plt.update(frame, leftBlinkRatio = leftBlinkRatio, rightBlinkRatio = rightBlinkRatio, blinkRatio = blinkRatio, fps = fps)
+        
+       
 
     cv.imshow("FaceDetection", frame)
+   
 
     if cv.waitKey(1) & 0xFF == ord('q'):
         break
 
+plt.updateLivePlt()
 camera.release()
 cv.destroyAllWindows()
 

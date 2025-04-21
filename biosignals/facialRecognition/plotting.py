@@ -40,10 +40,15 @@ def update(frame, leftBlinkRatio, rightBlinkRatio, blinkRatio, fps ):
 
 	text_box.set_text(fps)
 
+	fig.canvas.draw()
+	fig.canvas.flush_events()
+	mtplt.pause(0.001)
+
 	return leftEye, rightEye, combinedEyes, text_box
 
 
 def updateLivePlt():
+	mtplt.ion()
 	ani = mtpltanim.FuncAnimation(fig, update, interval=5000)
 	mtplt.tight_layout()
 	mtplt.show()

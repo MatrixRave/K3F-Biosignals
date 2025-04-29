@@ -2,9 +2,9 @@ from imageFeed import camera
 import cv2 as cv
 import mediapipe as mp
 import time
-import math
 import plotting as plt
 import recognitionVariables as recoVars
+import functions as func
 
 # MediaPipe Initialisierung
 mp_face_mesh = mp.solutions.face_mesh
@@ -12,14 +12,6 @@ face_mesh = mp_face_mesh.FaceMesh(static_image_mode=False, max_num_faces=1, refi
 
 # Zeichnen optional
 mp_drawing = mp.solutions.drawing_utils
-
-
-def get_landmark_coords(landmarks, idx, image_w, image_h):
-    landmark = landmarks[idx]
-    return int(landmark.x * image_w), int(landmark.y * image_h)
-
-def find_distance(p1, p2):
-    return math.hypot(p2[0] - p1[0], p2[1] - p1[1])
 
 while True:
     ret, frame = camera.read()
@@ -37,29 +29,29 @@ while True:
 
         for landmark_set in [recoVars.leftEyeLandmarks, recoVars.rightEyeLandmarks]:
             for id in landmark_set:
-                x, y = get_landmark_coords(landmarks, id, image_w, image_h)
+                x, y = func.get_landmark_coords(landmarks, id, image_w, image_h)
                 cv.circle(frame, (x, y), 2, (255, 0, 255), cv.FILLED)
 
         # Linkes Auge
-        p1 = get_landmark_coords(landmarks, recoVars.leftLengthHor[0], image_w, image_h)
-        p2 = get_landmark_coords(landmarks, recoVars.leftLengthHor[1], image_w, image_h)
-        leftHor = find_distance(p1, p2)
+        p1 = func.get_landmark_coords(landmarks, recoVars.leftLengthHor[0], image_w, image_h)
+        p2 = func.get_landmark_coords(landmarks, recoVars.leftLengthHor[1], image_w, image_h)
+        leftHor = func.find_distance(p1, p2)
         cv.line(frame, p1, p2, (255, 0, 0), 2)
 
-        p3 = get_landmark_coords(landmarks, recoVars.leftLengthVert[0], image_w, image_h)
-        p4 = get_landmark_coords(landmarks, recoVars.leftLengthVert[1], image_w, image_h)
-        leftVert = find_distance(p3, p4)
+        p3 = func.get_landmark_coords(landmarks, recoVars.leftLengthVert[0], image_w, image_h)
+        p4 = func.get_landmark_coords(landmarks, recoVars.leftLengthVert[1], image_w, image_h)
+        leftVert = func.find_distance(p3, p4)
         cv.line(frame, p3, p4, (255, 0, 0), 2)
 
         # Rechtes Auge
-        p5 = get_landmark_coords(landmarks, recoVars.rightLengthHor[0], image_w, image_h)
-        p6 = get_landmark_coords(landmarks, recoVars.rightLengthHor[1], image_w, image_h)
-        rightHor = find_distance(p5, p6)
+        p5 = func.get_landmark_coords(landmarks, recoVars.rightLengthHor[0], image_w, image_h)
+        p6 = func.get_landmark_coords(landmarks, recoVars.rightLengthHor[1], image_w, image_h)
+        rightHor = func.find_distance(p5, p6)
         cv.line(frame, p5, p6, (0, 255, 0), 2)
 
-        p7 = get_landmark_coords(landmarks, recoVars.rightLengthVert[0], image_w, image_h)
-        p8 = get_landmark_coords(landmarks, recoVars.rightLengthVert[1], image_w, image_h)
-        rightVert = find_distance(p7, p8)
+        p7 = func.get_landmark_coords(landmarks, recoVars.rightLengthVert[0], image_w, image_h)
+        p8 = func.get_landmark_coords(landmarks, recoVars.rightLengthVert[1], image_w, image_h)
+        rightVert = func.find_distance(p7, p8)
         cv.line(frame, p7, p8, (0, 255, 0), 2)
 
         # Blink-Ratio

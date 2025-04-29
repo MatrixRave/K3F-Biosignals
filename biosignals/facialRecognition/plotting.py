@@ -9,7 +9,7 @@ leftEye, = ax.plot([], [], label='Linkes Auge')
 rightEye, = ax.plot([], [], label='Rechtes Auge')
 combinedEyes, = ax.plot([], [], label='Kombination')
 
-ax.set_ylim(5,90)
+ax.set_ylim(25,180)
 ax.set_xlabel('Zeit (s)')
 ax.set_ylabel('BlinkRatio')
 ax.legend()

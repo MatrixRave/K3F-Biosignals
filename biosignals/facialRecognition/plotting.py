@@ -38,7 +38,7 @@ def update(frame, leftBlinkRatio, rightBlinkRatio, blinkRatio, fps ):
 	rightEye.set_data(x_data, rightEyeData)
 	combinedEyes.set_data(x_data, combinedEyesData)
 
-	text_box.set_text(fps)
+	text_box.set_text(f'FPS: {fps}')
 
 	fig.canvas.draw()
 	fig.canvas.flush_events()

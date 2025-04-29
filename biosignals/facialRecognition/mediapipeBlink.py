@@ -14,13 +14,13 @@ face_mesh = mp_face_mesh.FaceMesh(static_image_mode=False, max_num_faces=1, refi
 mp_drawing = mp.solutions.drawing_utils
 
 # Gesichtslandmark-IDs
-leftEyeLandmarks = [33, 246, 161, 160, 159, 158, 157, 173, 133, 155, 154, 153, 145, 144, 163, 7, 23]
-leftLengthHor = [159, 23]
-leftLengthVert = [130, 243]
+rightEyeLandmarks = [33, 246, 161, 160, 159, 158, 157, 173, 133, 155, 154, 153, 145, 144, 163, 7, 23]
+rightLengthHor = [27, 23]
+rightLengthVert = [130, 243]
 
-rightEyeLandmarks = [463, 398, 384, 385, 386, 387, 388, 466, 263, 249, 390, 373, 374, 380, 381, 382, 362]
-rightLengthHor = [386, 253]
-rightLengthVert = [359, 463]
+leftyeLandmarks = [466, 398, 384, 385, 386, 387, 388, 466, 263, 249, 390, 373, 374, 380, 381, 382, 362]
+leftLengthHor = [257, 253]
+leftLengthVert = [359, 463]
 
 plot = LivePlot(1200, 480, [10, 40])
 

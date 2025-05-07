@@ -27,7 +27,7 @@ def update(frame, leftBlinkRatio, rightBlinkRatio, blinkRatio, fps ):
 	rightEyeData.append(rightBlinkRatio)
 	combinedEyesData.append(blinkRatio)
 
-	if len(x_data) > 500: 
+	if len(x_data) > 250: 
 		x_data.pop(0)
 		leftEyeData.pop(0)
 		rightEyeData.pop(0)
@@ -49,7 +49,7 @@ def update(frame, leftBlinkRatio, rightBlinkRatio, blinkRatio, fps ):
 
 def updateLivePlt():
 	mtplt.ion()
-	ani = mtpltanim.FuncAnimation(fig, update, interval=5000)
+	ani = mtpltanim.FuncAnimation(fig, update, interval=500)
 	mtplt.tight_layout()
 	mtplt.show()
 	if mtplt.waitforbuttonpress(1) & 0xFF == ord('q'):

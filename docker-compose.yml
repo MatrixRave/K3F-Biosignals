@@ -10,6 +10,7 @@ services:
         - DOCKER_INFLUXDB_INIT_PASSWORD=admin1234
         - DOCKER_INFLUXDB_INIT_ORG=k3f
         - DOCKER_INFLUXDB_INIT_BUCKET=facialReco
+        - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN= l3nvrp4jhNEkEPaAuvlOJzhaVbJ8Lep7qhZ!NR4rlC6AS8Rh4s6JM59IzPSJ52ztfk8WHG0UCaPgwa2391c86BviOojVr-XEUXhEdFRJh?hj?puAA2tB61bZnw4s1IZW3Ma8Cz/KxbbrIpXiGRVYKc=-ViwFcCcesbaXID=zqtQW60yFGH-3V4cf3iC=S34HEh6sXbs6sRKwhzzV6U9vyuzfsH1xF7h0-3H47adxgdJmNzG!SOEsFeGNd=IvqTr=
       ports:
         - '8086:8086'
       volumes:

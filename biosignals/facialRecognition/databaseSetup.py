@@ -1,6 +1,5 @@
 import influxdb_client 
 from influxdb_client.client.write_api import SYNCHRONOUS
-from datetime import datetime
 
 bucket = 'facialReco'
 org = 'k3f'
@@ -16,15 +15,5 @@ client = influxdb_client.InfluxDBClient(
 
 # Setup of payload 
 def create_payload(leftBlinkRatio, rightBlinkRatio, combinedBlinkRatio):
-
-	data = {
-		"measurement": "blinks",
-		"tag":  "BlinkValues",
-		"time": datetime.now(),
-		"fields": {
-			'leftBlinkRatio': leftBlinkRatio,
-			'rightBlinkRatio': rightBlinkRatio, 
-			'combinedBlinkRatio': combinedBlinkRatio 
-		}
-	}
+	data = influxdb_client.Point("blinks").tag("bioSignal", "blinkValues").field("leftBlinkRatio",leftBlinkRatio).field("rightBlinkRatio", rightBlinkRatio).field("combinedBlinkRatio", combinedBlinkRatio)
 	return data

@@ -5,9 +5,11 @@ services:
       restart: always
       environment:
         - INFLUXDB_DB=influx
-        - INFLUXDB_ADMIN_USER=admin
-        - INFLUXDB_ADMIN_PASSWORD=admin1234
-        - INFLUXDB_ORG=k3f
+        - DOCKER_INFLUXDB_INIT_MODE=setup
+        - DOCKER_INFLUXDB_INIT_USERNAME=admin
+        - DOCKER_INFLUXDB_INIT_PASSWORD=admin1234
+        - DOCKER_INFLUXDB_INIT_ORG=k3f
+        - DOCKER_INFLUXDB_INIT_BUCKET=facialReco
       ports:
         - '8086:8086'
       volumes:

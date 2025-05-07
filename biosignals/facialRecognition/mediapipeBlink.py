@@ -15,7 +15,7 @@ face_mesh = mp_face_mesh.FaceMesh(static_image_mode=False, max_num_faces=1, refi
 # Zeichnen optional
 mp_drawing = mp.solutions.drawing_utils
 
-payload = []
+write_api: WriteApi = databaseSetup.client.write_api()
 
 while True:
     ret, frame = camera.read()
@@ -67,20 +67,18 @@ while True:
         fps = 1 / (recoVars.new_frame_time - recoVars.prev_frame_time)
         recoVars.prev_frame_time = recoVars.new_frame_time
 
-         
-
-        payload.append(databaseSetup.create_payload(leftBlinkRatio= leftBlinkRatio, rightBlinkRatio= rightBlinkRatio, combinedBlinkRatio=blinkRatio))
+        write_api.write(bucket=databaseSetup.bucket, org=databaseSetup.org, record=databaseSetup.create_payload(leftBlinkRatio= leftBlinkRatio, rightBlinkRatio= rightBlinkRatio, combinedBlinkRatio=blinkRatio) )
         
         plt.update(frame, leftBlinkRatio = leftBlinkRatio, rightBlinkRatio = rightBlinkRatio, blinkRatio = blinkRatio, fps = int(fps))
         
     cv.imshow("FaceDetection", frame)
-    write_api: WriteApi = databaseSetup.client.write_api()
-    write_api.write(bucket= databaseSetup.bucket, org= databaseSetup.org, record= payload)
+    
     if cv.waitKey(1) & 0xFF == ord('q'):
         break
+   
 
-
+write_api.flush
 camera.release()
 cv.destroyAllWindows()
-
-
+write_api.close()
+databaseSetup.client.close()

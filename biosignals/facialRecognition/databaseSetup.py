@@ -4,13 +4,14 @@ from datetime import datetime
 
 bucket = 'facialReco'
 org = 'k3f'
-token = '3TXrWSppn__jhpiGxxxno4-fNOC2GlqYW8DGSgzheMjivEc9fEh-uVfOeg-fson3frPcp8lfPkS2P73MBERB1g=='
+token = 'EtqvKKUjatci_cjEJphKbcS9sT3zdMMLk4RLuOQvzTwYvGi3vjb_4Iy2fm-DjBaqwGmxiBXswYBvsQIXKc1wfg=='
 url = 'http://localhost:8086'
 
 client = influxdb_client.InfluxDBClient(
 	url = url,
 	token = token, 
-	org = org
+	org = org,
+	timeout=30_000
 )
 
 # Setup of payload 
@@ -18,9 +19,7 @@ def create_payload(leftBlinkRatio, rightBlinkRatio, combinedBlinkRatio):
 
 	data = {
 		"measurement": "blinks",
-		"tags": {
-			"ticker": "BlinkValues" 
-		}, 
+		"tag":  "BlinkValues",
 		"time": datetime.now(),
 		"fields": {
 			'leftBlinkRatio': leftBlinkRatio,

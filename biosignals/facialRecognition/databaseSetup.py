@@ -3,7 +3,7 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 
 bucket = 'facialReco'
 org = 'k3f'
-token = 'EtqvKKUjatci_cjEJphKbcS9sT3zdMMLk4RLuOQvzTwYvGi3vjb_4Iy2fm-DjBaqwGmxiBXswYBvsQIXKc1wfg=='
+token ='EtqvKKUjatci_cjEJphKbcS9sT3zdMMLk4RLuOQvzTwYvGi3vjb_4Iy2fm-DjBaqwGmxiBXswYBvsQIXKc1wfg=='
 url = 'http://localhost:8086'
 
 client = influxdb_client.InfluxDBClient(

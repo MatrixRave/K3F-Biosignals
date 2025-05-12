@@ -59,9 +59,9 @@ while True:
         cv.line(frame, p7, p8, (0, 255, 0), 2)
 
         # Blink-Ratio
-        leftBlinkRatio = (leftVert / leftHor) * 10
-        rightBlinkRatio = (rightVert / rightHor) * 10
-        blinkRatio = (leftBlinkRatio + rightBlinkRatio) / 2
+        leftBlinkRatio = ((leftVert / leftHor) * 10, 0)
+        rightBlinkRatio = ((rightVert / rightHor) * 10, 0)
+        blinkRatio = ((leftBlinkRatio + rightBlinkRatio) / 2, 0)
 
           # FPS anzeigen
         fps = 1 / (recoVars.new_frame_time - recoVars.prev_frame_time)

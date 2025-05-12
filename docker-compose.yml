@@ -11,6 +11,7 @@ services:
         - DOCKER_INFLUXDB_INIT_ORG=k3f
         - DOCKER_INFLUXDB_INIT_BUCKET=facialReco
         - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=EtqvKKUjatci_cjEJphKbcS9sT3zdMMLk4RLuOQvzTwYvGi3vjb_4Iy2fm-DjBaqwGmxiBXswYBvsQIXKc1wfg==
+        - DOCKER_INFLUXDB_INIT_RETENTION=7d
       ports:
         - '8086:8086'
       volumes:

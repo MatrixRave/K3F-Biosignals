@@ -6,6 +6,7 @@ datasources:
     access: proxy
     url: http://influxdb:8086
     isDefault: true
+    uid: "influx_db_uid-139"
     jsonData:
       version: Flux
       organization: k3f

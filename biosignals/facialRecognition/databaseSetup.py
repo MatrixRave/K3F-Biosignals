@@ -14,6 +14,19 @@ client = influxdb_client.InfluxDBClient(
 )
 
 # Setup of payload 
-def create_payload(leftBlinkRatio, rightBlinkRatio, combinedBlinkRatio):
-	data = influxdb_client.Point("blinks").tag("bioSignal", "blinkValues").field("leftBlinkRatio",leftBlinkRatio).field("rightBlinkRatio", rightBlinkRatio).field("combinedBlinkRatio", combinedBlinkRatio)
+def create_payload_blink(leftBlinkRatio, rightBlinkRatio, combinedBlinkRatio):
+	data = (influxdb_client.Point("blinks").tag("bioSignal", "blinkValues")
+		 .field("leftBlinkRatio",leftBlinkRatio)
+		 .field("rightBlinkRatio", rightBlinkRatio)
+		 .field("combinedBlinkRatio", combinedBlinkRatio))
+	return data
+
+def create_payload_pupil(left_iris_radius, right_iris_radius, left_pupil_radius, right_pupil_radius, left_ratio, right_ratio):
+	data = (influxdb_client.Point("pupil").tag("bioSignal", "pupilValues")
+		 .field("left_iris_radius", left_iris_radius)
+		 .field("right_iris_radius", right_iris_radius)
+		 .field("left_pupil_radius", left_pupil_radius)
+		 .field("right_pupil_radius", right_pupil_radius)
+		 .field("left_ratio", left_ratio)
+		 .filed("right_ratio", right_ratio))
 	return data

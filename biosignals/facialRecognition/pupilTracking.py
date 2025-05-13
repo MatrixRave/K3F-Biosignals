@@ -9,11 +9,7 @@ def pupil_tracking(iris_landmarks, eye_side, gray_frame, image_w, image_h, resul
     ipd_mm = 63  # Average adult IPD
     pixel_to_mm = ipd_mm / ipd_pixels
 
-    try:
-        (cx, cy), iris_radius_px = cv.minEnclosingCircle(mesh_points[iris_landmarks])
-    except IndexError:
-        print(f"Failed to locate iris landmarks for {eye_side}.")
-        return
+    (cx, cy), iris_radius_px = cv.minEnclosingCircle(mesh_points[iris_landmarks])
 
     iris_center = np.array([cx, cy], dtype=np.int32)
     iris_radius_mm = iris_radius_px * pixel_to_mm
@@ -64,11 +60,8 @@ def pupil_tracking(iris_landmarks, eye_side, gray_frame, image_w, image_h, resul
             iris_pupil_ratio = iris_radius_mm / pupil_radius_mm if pupil_radius_mm > 0 else 0
             iris_pupil_ratio = max(2.0, min(iris_pupil_ratio, 5.0))
 
-            print(f"{eye_side} Iris Radius (mm): {iris_radius_mm:.2f}")
-            print(f"{eye_side} Pupil Radius (mm): {pupil_radius_mm:.2f}")
-            print(f"{eye_side} Iris-to-Pupil Ratio: {iris_pupil_ratio:.2f}")
+            
 
             annotated_frame = selected_frame.copy()
             cv.circle(annotated_frame, tuple(iris_center), int(iris_radius_px), (0, 0, 255), 2)
             cv.circle(annotated_frame, tuple(pupil_center), int(pupil_radius_mm / pixel_to_mm), (0, 255, 0), 2)
-            print(f"Saved annotation for {eye_side}.")

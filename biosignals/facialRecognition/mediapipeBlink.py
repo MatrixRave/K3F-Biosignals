@@ -7,13 +7,10 @@ import plotting as plt
 import recognitionVariables as recoVars
 import functions as func
 import databaseSetup
+import pupilTracking
 
 # MediaPipe Initialisierung
-mp_face_mesh = mp.solutions.face_mesh
-face_mesh = mp_face_mesh.FaceMesh(static_image_mode=False, max_num_faces=1, refine_landmarks=True, min_detection_confidence=0.5, min_tracking_confidence=0.5)
-
-# Zeichnen optional
-mp_drawing = mp.solutions.drawing_utils
+face_mesh = mp.solutions.face_mesh.FaceMesh(static_image_mode=False, max_num_faces=1, refine_landmarks=True, min_detection_confidence=0.5, min_tracking_confidence=0.5)
 
 write_api: WriteApi = databaseSetup.client.write_api()
 
@@ -27,6 +24,9 @@ while True:
     results = face_mesh.process(frame_rgb)
 
     image_h, image_w = frame.shape[:2]
+
+    frame_copy = cv.flip(frame,1).copy() 
+    gray_scale = cv.cvtColor(frame_copy, cv.COLOR_BGR2GRAY)
 
     if results.multi_face_landmarks:
         landmarks = results.multi_face_landmarks[0].landmark
@@ -70,6 +70,10 @@ while True:
         write_api.write(bucket=databaseSetup.bucket, org=databaseSetup.org, record=databaseSetup.create_payload(leftBlinkRatio= leftBlinkRatio, rightBlinkRatio= rightBlinkRatio, combinedBlinkRatio=blinkRatio) )
         
         # plt.update(frame, leftBlinkRatio = leftBlinkRatio, rightBlinkRatio = rightBlinkRatio, blinkRatio = blinkRatio, fps = int(fps))
+
+        pupilTracking.pupil_tracking(gray_frame= gray_scale, image_h= image_h, image_w = image_w, iris_landmarks=recoVars.leftIris, eye_side='LeftEye', results=results, selected_frame= frame)
+        pupilTracking.pupil_tracking(gray_frame= gray_scale, image_h= image_h, image_w = image_w, iris_landmarks=recoVars.rightIris, eye_side='RightEye', results=results, selected_frame=frame)
+
 
         cv.putText(frame, f'FPS: {int(fps)}', (10, 40), cv.FONT_HERSHEY_SIMPLEX, 
                 1, (0, 255, 0), 2, cv.LINE_AA)

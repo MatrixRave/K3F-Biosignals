@@ -2,11 +2,12 @@ import cv2 as cv
 import numpy as np
 import recognitionVariables as recoVars
 
+ipd_mm = 63  # Average adult IPD
+
 def pupil_tracking(iris_landmarks, eye_side, gray_frame, image_w, image_h, results):
     mesh_points = np.array([np.multiply([p.x, p.y], [image_w, image_h]).astype(int) 
                                 for p in results.multi_face_landmarks[0].landmark])
     ipd_pixels = np.linalg.norm(mesh_points[recoVars.leftEyeOuter] - mesh_points[recoVars.rightEyeOuter])
-    ipd_mm = 63  # Average adult IPD
     pixel_to_mm = ipd_mm / ipd_pixels
 
     (cx, cy), iris_radius_px = cv.minEnclosingCircle(mesh_points[iris_landmarks])
@@ -29,7 +30,6 @@ def pupil_tracking(iris_landmarks, eye_side, gray_frame, image_w, image_h, resul
         contours, _ = cv.findContours(combined, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
 
         pupil_radius_mm = 0
-        pupil_center = (int(iris_center[0]), int(iris_center[1]))
 
         if contours:
             largest_area = 0
@@ -51,7 +51,6 @@ def pupil_tracking(iris_landmarks, eye_side, gray_frame, image_w, image_h, resul
 
                 if min_pupil_radius_px <= radius_px <= max_pupil_radius_px:
                     pupil_radius_mm = radius_px * pixel_to_mm
-                    pupil_center = (int(x), int(y))
                 else:
                     pupil_radius_mm = iris_radius_mm / 3
             else:
@@ -59,3 +58,5 @@ def pupil_tracking(iris_landmarks, eye_side, gray_frame, image_w, image_h, resul
 
             iris_pupil_ratio = iris_radius_mm / pupil_radius_mm if pupil_radius_mm > 0 else 0
             iris_pupil_ratio = max(2.0, min(iris_pupil_ratio, 5.0))
+
+            # return array with iris_radius_mm, pupil_radius_mm, and iris_pupil_ratio

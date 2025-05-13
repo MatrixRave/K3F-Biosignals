@@ -2,7 +2,7 @@ import cv2 as cv
 import numpy as np
 import recognitionVariables as recoVars
 
-def pupil_tracking(iris_landmarks, eye_side, gray_frame, image_w, image_h, results, selected_frame):
+def pupil_tracking(iris_landmarks, eye_side, gray_frame, image_w, image_h, results):
     mesh_points = np.array([np.multiply([p.x, p.y], [image_w, image_h]).astype(int) 
                                 for p in results.multi_face_landmarks[0].landmark])
     ipd_pixels = np.linalg.norm(mesh_points[recoVars.leftEyeOuter] - mesh_points[recoVars.rightEyeOuter])
@@ -59,9 +59,3 @@ def pupil_tracking(iris_landmarks, eye_side, gray_frame, image_w, image_h, resul
 
             iris_pupil_ratio = iris_radius_mm / pupil_radius_mm if pupil_radius_mm > 0 else 0
             iris_pupil_ratio = max(2.0, min(iris_pupil_ratio, 5.0))
-
-            
-
-            annotated_frame = selected_frame.copy()
-            cv.circle(annotated_frame, tuple(iris_center), int(iris_radius_px), (0, 0, 255), 2)
-            cv.circle(annotated_frame, tuple(pupil_center), int(pupil_radius_mm / pixel_to_mm), (0, 255, 0), 2)

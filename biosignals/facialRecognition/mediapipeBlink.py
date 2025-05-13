@@ -71,8 +71,8 @@ while True:
         
         # plt.update(frame, leftBlinkRatio = leftBlinkRatio, rightBlinkRatio = rightBlinkRatio, blinkRatio = blinkRatio, fps = int(fps))
 
-        pupilTracking.pupil_tracking(gray_frame= gray_scale, image_h= image_h, image_w = image_w, iris_landmarks=recoVars.leftIris, eye_side='LeftEye', results=results, selected_frame= frame)
-        pupilTracking.pupil_tracking(gray_frame= gray_scale, image_h= image_h, image_w = image_w, iris_landmarks=recoVars.rightIris, eye_side='RightEye', results=results, selected_frame=frame)
+        pupilTracking.pupil_tracking(gray_frame= gray_scale, image_h= image_h, image_w = image_w, iris_landmarks=recoVars.leftIris, eye_side='LeftEye', results=results)
+        pupilTracking.pupil_tracking(gray_frame= gray_scale, image_h= image_h, image_w = image_w, iris_landmarks=recoVars.rightIris, eye_side='RightEye', results=results)
 
 
         cv.putText(frame, f'FPS: {int(fps)}', (10, 40), cv.FONT_HERSHEY_SIMPLEX, 

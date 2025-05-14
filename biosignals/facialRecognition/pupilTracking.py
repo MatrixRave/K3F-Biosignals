@@ -4,7 +4,7 @@ import recognitionVariables as recoVars
 
 ipd_mm = 63  # Average adult IPD
 
-def pupil_tracking(iris_landmarks, eye_side, gray_frame, image_w, image_h, results):
+def pupil_tracking(iris_landmarks, gray_frame, image_w, image_h, results):
     mesh_points = np.array([np.multiply([p.x, p.y], [image_w, image_h]).astype(int) 
                                 for p in results.multi_face_landmarks[0].landmark])
     ipd_pixels = np.linalg.norm(mesh_points[recoVars.leftEyeOuter] - mesh_points[recoVars.rightEyeOuter])
@@ -59,4 +59,5 @@ def pupil_tracking(iris_landmarks, eye_side, gray_frame, image_w, image_h, resul
             iris_pupil_ratio = iris_radius_mm / pupil_radius_mm if pupil_radius_mm > 0 else 0
             iris_pupil_ratio = max(2.0, min(iris_pupil_ratio, 5.0))
 
+            return [pupil_radius_mm, iris_radius_mm, iris_pupil_ratio]
             # return array with iris_radius_mm, pupil_radius_mm, and iris_pupil_ratio

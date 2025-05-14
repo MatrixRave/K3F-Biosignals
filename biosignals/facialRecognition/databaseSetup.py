@@ -28,5 +28,5 @@ def create_payload_pupil(left_iris_radius, right_iris_radius, left_pupil_radius,
 		 .field("left_pupil_radius", left_pupil_radius)
 		 .field("right_pupil_radius", right_pupil_radius)
 		 .field("left_ratio", left_ratio)
-		 .filed("right_ratio", right_ratio))
+		 .field("right_ratio", right_ratio))
 	return data

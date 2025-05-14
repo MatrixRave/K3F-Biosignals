@@ -67,13 +67,16 @@ while True:
         fps = 1 / (recoVars.new_frame_time - recoVars.prev_frame_time)
         recoVars.prev_frame_time = recoVars.new_frame_time
 
-        write_api.write(bucket=databaseSetup.bucket, org=databaseSetup.org, record=databaseSetup.create_payload(leftBlinkRatio= leftBlinkRatio, rightBlinkRatio= rightBlinkRatio, combinedBlinkRatio=blinkRatio) )
+        write_api.write(bucket=databaseSetup.bucket, org=databaseSetup.org, record=databaseSetup.create_payload_blink(leftBlinkRatio= leftBlinkRatio, rightBlinkRatio= rightBlinkRatio, combinedBlinkRatio=blinkRatio) )
         
         # plt.update(frame, leftBlinkRatio = leftBlinkRatio, rightBlinkRatio = rightBlinkRatio, blinkRatio = blinkRatio, fps = int(fps))
 
-        pupilTracking.pupil_tracking(gray_frame= gray_scale, image_h= image_h, image_w = image_w, iris_landmarks=recoVars.leftIris, eye_side='LeftEye', results=results)
-        pupilTracking.pupil_tracking(gray_frame= gray_scale, image_h= image_h, image_w = image_w, iris_landmarks=recoVars.rightIris, eye_side='RightEye', results=results)
+        leftPupil = pupilTracking.pupil_tracking(gray_frame= gray_scale, image_h= image_h, image_w = image_w, iris_landmarks=recoVars.leftIris, results=results)
+        rightPupil = pupilTracking.pupil_tracking(gray_frame= gray_scale, image_h= image_h, image_w = image_w, iris_landmarks=recoVars.rightIris, results=results)
 
+        write_api.write(bucket=databaseSetup.bucket, org=databaseSetup.org, 
+                        record=databaseSetup.create_payload_pupil(left_iris_radius=leftPupil[1], left_pupil_radius=leftPupil[0], left_ratio= leftPupil[2], 
+                                                                  right_iris_radius= rightPupil[1], right_pupil_radius=rightPupil[0], right_ratio= rightPupil[2]))
 
         cv.putText(frame, f'FPS: {int(fps)}', (10, 40), cv.FONT_HERSHEY_SIMPLEX, 
                 1, (0, 255, 0), 2, cv.LINE_AA)

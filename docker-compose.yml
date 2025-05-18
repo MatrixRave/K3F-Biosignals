@@ -1,6 +1,6 @@
 services: 
   influxdb:
-      image: influxdb:latest
+      image: influxdb:2.7.11
       container_name: influxdb
       restart: always
       environment:
@@ -19,7 +19,7 @@ services:
         - influxdb_config:/etc/influxdb
 
   grafana:
-    image: grafana/grafana:latest
+    image: grafana/grafana:12.0.0
     container_name: grafana
     restart: always
     depends_on:

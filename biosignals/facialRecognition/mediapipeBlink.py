@@ -8,11 +8,14 @@ import recognitionVariables as recoVars
 import functions as func
 import databaseSetup
 import pupilTracking
+import threading
 
 # MediaPipe Initialisierung
 face_mesh = mp.solutions.face_mesh.FaceMesh(static_image_mode=False, max_num_faces=1, refine_landmarks=True, min_detection_confidence=0.5, min_tracking_confidence=0.5)
 
 write_api: WriteApi = databaseSetup.client.write_api()
+
+thread_id = threading.get_native_id()
 
 while True:
     ret, frame = camera.read()
@@ -63,11 +66,13 @@ while True:
         rightBlinkRatio = max((rightVert / rightHor) * 10, 0)
         blinkRatio = max((leftBlinkRatio + rightBlinkRatio) / 2, 0)
 
+       
+
           # FPS anzeigen
         fps = 1 / (recoVars.new_frame_time - recoVars.prev_frame_time)
         recoVars.prev_frame_time = recoVars.new_frame_time
 
-        write_api.write(bucket=databaseSetup.bucket, org=databaseSetup.org, record=databaseSetup.create_payload_blink(leftBlinkRatio= leftBlinkRatio, rightBlinkRatio= rightBlinkRatio, combinedBlinkRatio=blinkRatio) )
+        write_api.write(bucket=databaseSetup.bucket, org=databaseSetup.org, record=databaseSetup.create_payload_blink(leftBlinkRatio= leftBlinkRatio, rightBlinkRatio= rightBlinkRatio, combinedBlinkRatio=blinkRatio, threadId = thread_id,) )
         
         # plt.update(frame, leftBlinkRatio = leftBlinkRatio, rightBlinkRatio = rightBlinkRatio, blinkRatio = blinkRatio, fps = int(fps))
 
@@ -76,7 +81,7 @@ while True:
 
         write_api.write(bucket=databaseSetup.bucket, org=databaseSetup.org, 
                         record=databaseSetup.create_payload_pupil(left_iris_radius=leftPupil[1], left_pupil_radius=leftPupil[0], left_ratio= leftPupil[2], 
-                                                                  right_iris_radius= rightPupil[1], right_pupil_radius=rightPupil[0], right_ratio= rightPupil[2]))
+                                                                  right_iris_radius= rightPupil[1], right_pupil_radius=rightPupil[0], right_ratio= rightPupil[2], threadId = thread_id,))
 
         cv.putText(frame, f'FPS: {int(fps)}', (10, 40), cv.FONT_HERSHEY_SIMPLEX, 
                 1, (0, 255, 0), 2, cv.LINE_AA)

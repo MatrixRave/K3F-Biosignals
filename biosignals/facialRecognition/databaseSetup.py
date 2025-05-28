@@ -1,5 +1,5 @@
 import influxdb_client 
-from influxdb_client.client.write_api import SYNCHRONOUS
+
 
 bucket = 'facialReco'
 org = 'k3f'

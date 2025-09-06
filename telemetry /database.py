@@ -16,7 +16,6 @@ class Database:
 		self.url = url if url else Database.URL
 		self.timeout = 1_000
 
-
 		self.client = influxdb_client.InfluxDBClient(
 			url = self.url,
 			token = self.token,
@@ -26,7 +25,6 @@ class Database:
 		self.write_api = self.client.write_api()
 	
 	def write_batch(self, buffer):
-		influxdb_client.write_api = self.client.write_api(write_options=SYNCHRONOUS)
-		self.client.write(bucket=self.bucket,
+		self.write_api.write(bucket=self.bucket,
 							 org=self.org,
 							 record=buffer)

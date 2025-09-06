@@ -3,7 +3,9 @@ import re
 import pandas as pd
 from datetime import datetime, timedelta
 from influxdb_client import Point, WritePrecision
-import database
+from database import Database
+from tqdm import tqdm
+import time
 
 def extract_start_time_from_filename(filename: str) -> datetime:
     match = re.match(r"(\d{8})-(\d{6})", filename)
@@ -13,6 +15,7 @@ def extract_start_time_from_filename(filename: str) -> datetime:
     return datetime.strptime(date_str + time_str, "%d%m%Y%H%M%S")
 
 def import_csv_to_influx(file_path: str):
+    database = Database()
     filename = os.path.basename(file_path)
     start_time = extract_start_time_from_filename(filename)
 
@@ -23,10 +26,8 @@ def import_csv_to_influx(file_path: str):
     duration_col = df.columns[0]
     df["timestamp"] = [start_time + timedelta(milliseconds=val) for val in df[duration_col]]
 
-    client = database.influxdb_client
-
     buffer = []
-    for _, row in df.iterrows():
+    for _, row in tqdm(df.iterrows()):
         point = (
             Point("csv_import")  # measurement name
             .time(row["timestamp"], WritePrecision.NS)
@@ -50,14 +51,16 @@ def import_csv_to_influx(file_path: str):
     if buffer:
         database.write_batch(buffer)
 
-    client.close()
+    time.sleep(1)
+
 
 def import_multiple(files):
     for f in files:
+        print("Importing telemtry from", f)
         import_csv_to_influx(f)
 
 if __name__ == "__main__":
     # Import all CSV files in current folder
-    folder = "."
+    folder = "../sample_data/telemetry"
     csv_files = [os.path.join(folder, f) for f in os.listdir(folder) if f.endswith(".csv")]
     import_multiple(csv_files)

@@ -20,11 +20,14 @@ def import_csv_to_influx(file_path: str):
     start_time = extract_start_time_from_filename(filename)
 
     # Read CSV, skipping first 20 lines
-    df = pd.read_csv(file_path, skiprows=20)
+    df = pd.read_csv(file_path, skiprows=18)
+    #remove units
+    df = df.iloc[1:].reset_index(drop=True)
 
+    print(df.head())
     # First column is duration in milliseconds
     duration_col = df.columns[0]
-    df["timestamp"] = [start_time + timedelta(milliseconds=val) for val in df[duration_col]]
+    df["timestamp"] = [start_time + timedelta(milliseconds=float(val)) for val in df[duration_col]]
 
     buffer = []
     for _, row in tqdm(df.iterrows()):

@@ -68,3 +68,4 @@ urllib3==2.4.0
 wcwidth==0.2.13
 plotly
 neurokit2
+tqdm

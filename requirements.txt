@@ -69,3 +69,6 @@ wcwidth==0.2.13
 plotly
 neurokit2
 tqdm
+pandas
+serial
+pyshimmer

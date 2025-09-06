@@ -1,25 +1,10 @@
-from pupil_tracking import PupilTracking
 from video_manager import VideoManager
 import mediapipe as mp
 from landmarks import *
 from eye_blink_detection import EyeBlinkDetection
 from database_setup import Database
-
 import cv2 as cv
-
-from influxdb_client.client.write_api import WriteApi
-#from imageFeed import camera
-#import mediapipe as mp
 import time
-#import recognitionVariables as recoVars
-#import functions as func
-#import databaseSetup
-#import pupilTracking
-import threading
-#from gazeTracking.calibration import Calibration
-#from gazeTracking.pupil import Pupil
-import numpy as np
-
 import sys
 
 class DriverVisionProcessor:

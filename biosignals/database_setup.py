@@ -1,5 +1,4 @@
 import influxdb_client
-from reactivex.operators import timestamp
 
 
 class Database:

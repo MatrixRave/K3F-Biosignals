@@ -9,7 +9,6 @@ import databaseSetup
 import pupilTracking
 import threading
 from gazeTracking.calibration import Calibration
-from gazeTracking.pupil import Pupil
 import numpy as np
 
 # MediaPipe Initialisierung

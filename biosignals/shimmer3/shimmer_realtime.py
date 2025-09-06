@@ -1,5 +1,5 @@
 from serial import Serial
-from pyshimmer import ShimmerBluetooth, DEFAULT_BAUDRATE, DataPacket, EChannelType
+from pyshimmer import ShimmerBluetooth, DEFAULT_BAUDRATE
 import time
 
 class Shimmer3RealtimeDataStream:

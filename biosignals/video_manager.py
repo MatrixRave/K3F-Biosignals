@@ -1,8 +1,5 @@
 import cv2
 import time
-import os
-
-from numpy.ma.core import true_divide
 
 
 class VideoManager:

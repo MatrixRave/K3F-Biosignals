@@ -1,6 +1,3 @@
-from shimmer3 import shimmer_realtime
-from pyshimmer import DataPacket, EChannelType
-
 from shimmer3.shimmer_realtime import Shimmer3RealtimeDataStream
 
 

@@ -1,6 +1,5 @@
 from landmarks import *
 import utils
-import sys
 
 class EyeBlinkDetection:
 

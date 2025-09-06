@@ -159,7 +159,7 @@ def write_shimmer_record_to_database(record, measurement_name):
 
 
 if __name__ == '__main__':
-    data_fp = "../../sample_data/trial_1/2025-08-25_15.50.55_K3FTrial_SD_Session1_localtimestamp/K3FTrial_Session1_Shimmer_A66F_Calibrated_SD.csv"
+    data_fp = "../../sample_data/shimmer3/2025-08-25_15.50.55_K3FTrial_SD_Session1_localtimestamp/K3FTrial_Session1_Shimmer_A66F_Calibrated_SD.csv"
     report_dir = "../../reports"
 
     # read recorded Shimmer3 GSR+ data (CSV export from Consensys with local timestamp)

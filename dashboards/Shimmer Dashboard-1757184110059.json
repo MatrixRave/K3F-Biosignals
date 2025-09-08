@@ -57,6 +57,7 @@
         "type": "influxdb",
         "uid": "influx_db_uid-139"
       },
+      "description": "Lokales Magnetfeld, bestimmt Ausrichtung relativ zum Erdmagnetfeld",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -142,7 +143,7 @@
           }
         }
       ],
-      "title": "New panel",
+      "title": "Magnetometer",
       "type": "timeseries"
     },
     {
@@ -235,7 +236,7 @@
           }
         }
       ],
-      "title": "New panel",
+      "title": "Puls",
       "type": "timeseries"
     },
     {
@@ -243,6 +244,7 @@
         "type": "influxdb",
         "uid": "influx_db_uid-139"
       },
+      "description": "Misst Beschleunigung in alle Richtungen",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -328,7 +330,7 @@
           }
         }
       ],
-      "title": "New panel",
+      "title": "Accelerometer",
       "type": "timeseries"
     },
     {
@@ -336,6 +338,7 @@
         "type": "influxdb",
         "uid": "influx_db_uid-139"
       },
+      "description": "Misst die Winkelgeschwindigkeit, ermöglicht Bestimmung der Körperorientierung und Analyse von Drehbewegungen. ",
       "fieldConfig": {
         "defaults": {
           "color": {

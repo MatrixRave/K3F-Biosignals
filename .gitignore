@@ -8,7 +8,7 @@ env.yaml
 *.swo
 
 # generated shimmer reports
-.reports/
+reports/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

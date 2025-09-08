@@ -1,0 +1,17 @@
+training_type: 'finetune_vision_image_transformer'
+mlflow:
+  training_info: 'VIT model finetuned on greyscale images for closed eyes detection'
+  images_info: 'greyscale mEBAL2, filtered v1'
+  split_info: 'fixed_split'
+
+model:
+  base_model: 'google/vit-base-patch16-224-in21k'
+  model_name: 'vit-base-patch16-224-in21k_ft_closed_eyes_detection_greyscale_fixed_split'
+
+dataset:
+  convert_greyscale: true
+  split:
+
+
+
+

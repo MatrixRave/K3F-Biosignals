@@ -1,0 +1,39 @@
+services: 
+  influxdb:
+      image: influxdb:2.7.11
+      container_name: influxdb
+      restart: always
+      environment:
+        - INFLUXDB_DB=influx
+        - DOCKER_INFLUXDB_INIT_MODE=setup
+        - DOCKER_INFLUXDB_INIT_USERNAME=admin
+        - DOCKER_INFLUXDB_INIT_PASSWORD=admin1234
+        - DOCKER_INFLUXDB_INIT_ORG=k3f
+        - DOCKER_INFLUXDB_INIT_BUCKET=facialReco
+        - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=EtqvKKUjatci_cjEJphKbcS9sT3zdMMLk4RLuOQvzTwYvGi3vjb_4Iy2fm-DjBaqwGmxiBXswYBvsQIXKc1wfg==
+        - DOCKER_INFLUXDB_INIT_RETENTION=150d
+      ports:
+        - '8086:8086'
+      volumes:
+        - influxdb_data:/var/lib/influxdb
+        - influxdb_config:/etc/influxdb
+
+  grafana:
+    image: grafana/grafana:12.0.0
+    container_name: grafana
+    restart: always
+    depends_on:
+        - influxdb
+    links:
+        - influxdb
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./provisioning:/etc/grafana/provisioning
+      - ./dashboards:/var/lib/grafana/dashboards
+      - grafana_data:/var/lib/grafana
+
+volumes:
+  grafana_data: {}
+  influxdb_data: {}
+  influxdb_config: {}

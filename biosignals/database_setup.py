@@ -2,7 +2,7 @@ import influxdb_client
 
 
 class Database:
-    BUCKET = 'facialReco'
+    BUCKET = 'shimmer'
     ORG = 'k3f'
     TOKEN = 'EtqvKKUjatci_cjEJphKbcS9sT3zdMMLk4RLuOQvzTwYvGi3vjb_4Iy2fm-DjBaqwGmxiBXswYBvsQIXKc1wfg=='
     URL = 'http://localhost:8086'

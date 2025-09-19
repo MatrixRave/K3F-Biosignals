@@ -135,7 +135,7 @@
       "pluginVersion": "12.0.0",
       "targets": [
         {
-          "query": " from(bucket: \"facialReco\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"shimmer3gsrplus\" and\n    contains(value: r._field, set: [\"Mag_X_CAL\", \"Mag_Y_CAL\", \"Mag_Z_CAL\" ])\n  )\n  |> aggregateWindow(every: 500ms, fn: mean, createEmpty: false)",
+          "query": " from(bucket: \"shimmer\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"shimmer3gsrplus\" and\n    contains(value: r._field, set: [\"Mag_X_CAL\", \"Mag_Y_CAL\", \"Mag_Z_CAL\" ])\n  )\n  |> aggregateWindow(every: 500ms, fn: mean, createEmpty: false)",
           "refId": "A",
           "datasource": {
             "type": "influxdb",
@@ -228,7 +228,7 @@
       "pluginVersion": "12.0.0",
       "targets": [
         {
-          "query": " from(bucket: \"facialReco\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"shimmer3gsrplus\" and\n    contains(value: r._field, set: [\"PPG_Rate\" ])\n  )\n  |> aggregateWindow(every: 500ms, fn: mean, createEmpty: false)",
+          "query": " from(bucket: \"shimmer\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"shimmer3gsrplus\" and\n    contains(value: r._field, set: [\"PPG_Rate\" ])\n  )\n  |> aggregateWindow(every: 500ms, fn: mean, createEmpty: false)",
           "refId": "A",
           "datasource": {
             "type": "influxdb",
@@ -322,7 +322,7 @@
       "pluginVersion": "12.0.0",
       "targets": [
         {
-          "query": " from(bucket: \"facialReco\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"shimmer3gsrplus\" and\n    contains(value: r._field, set: [\"Accel_LN_X_CAL\", \"Accel_LN_Y_CAL\", \"Accel_LN_Z_CAL\", \"Accel_WR_X_CAL\", \"Accel_WR_Y_CAL\", \"Accel_WR_Z_CAL\" ])\n  )\n  |> aggregateWindow(every: 500ms, fn: mean, createEmpty: false)",
+          "query": " from(bucket: \"shimmer\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"shimmer3gsrplus\" and\n    contains(value: r._field, set: [\"Accel_LN_X_CAL\", \"Accel_LN_Y_CAL\", \"Accel_LN_Z_CAL\", \"Accel_WR_X_CAL\", \"Accel_WR_Y_CAL\", \"Accel_WR_Z_CAL\" ])\n  )\n  |> aggregateWindow(every: 500ms, fn: mean, createEmpty: false)",
           "refId": "A",
           "datasource": {
             "type": "influxdb",
@@ -420,7 +420,7 @@
             "type": "influxdb",
             "uid": "influx_db_uid-139"
           },
-          "query": "from(bucket: \"facialReco\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"shimmer3gsrplus\" and\n    contains(value: r._field, set: [\"Gyro_X_CAL\", \"Gyro_Y_CAL\", \"Gyro_Z_CAL\"])\n  )\n  |> aggregateWindow(every: 500ms, fn: mean, createEmpty: false)",
+          "query": "from(bucket: \"shimmer\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"shimmer3gsrplus\" and\n    contains(value: r._field, set: [\"Gyro_X_CAL\", \"Gyro_Y_CAL\", \"Gyro_Z_CAL\"])\n  )\n  |> aggregateWindow(every: 500ms, fn: mean, createEmpty: false)",
           "refId": "A"
         }
       ],

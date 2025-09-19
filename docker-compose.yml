@@ -17,6 +17,7 @@ services:
       volumes:
         - influxdb_data:/var/lib/influxdb
         - influxdb_config:/etc/influxdb
+        - ./influxdb/scripts:/docker-entrypoint-initdb.d
 
   grafana:
     image: grafana/grafana:12.0.0

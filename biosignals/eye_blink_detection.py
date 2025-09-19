@@ -46,22 +46,10 @@ class EyeBlinkDetection:
 
         if (self.eye_aspect_ratio_mean > self.blink_lower_threshold
                 and self.eye_aspect_ratio_mean <= self.blink_upper_threshold):
-            print(
-                "I think person blinked. eye_aspect_ratio_mean = ",
-                self.eye_aspect_ratio_mean,
-                "Confirming with ViT model...",
-            )
             is_eyeblink = True
             #is_eyeblink = self.blink_detection_model(left_eye=left_eye, right_eye=right_eye)
-            if is_eyeblink:
-                print("Yes, person blinked. Confirmed by model")
-
-            else:
-                print("No, person didn't blinked. False Alarm")
         elif self.eye_aspect_ratio_mean <= self.blink_lower_threshold:
             is_eyeblink = True
-            print("Surely person blinked. eye_aspect_ratio_mean = ", self.eye_aspect_ratio_mean)
-
         else:
             is_eyeblink = False
 

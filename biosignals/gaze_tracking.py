@@ -44,9 +44,6 @@ class GazeTracking():
             left_gaze = get_gaze_ratio(left_eye.pupil, left_eye.center)
             right_gaze = get_gaze_ratio(right_eye.pupil, right_eye.center)
 
-            # Optional: Draw gaze direction or print
-            print(f"Gaze - L: {left_gaze}, R: {right_gaze}")
-
 
     def get_record(self):
         pass

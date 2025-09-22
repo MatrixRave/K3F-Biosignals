@@ -118,6 +118,7 @@
         "y": 0
       },
       "id": 6,
+      "maxDataPoints": 12000,
       "options": {
         "legend": {
           "calcs": [],
@@ -134,7 +135,7 @@
       "pluginVersion": "12.0.0",
       "targets": [
         {
-          "query": "from(bucket: \"telemetry\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"csv_import\" and\n    contains(value: r._field, set: [\"Gear\"])\n  )\n  |> aggregateWindow(every: 500ms, fn: mean, createEmpty: false)\n\n",
+          "query": "from(bucket: \"telemetry\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"csv_import\" and\n    contains(value: r._field, set: [\"Gear\"])\n  )",
           "refId": "A",
           "datasource": {
             "type": "influxdb",
@@ -230,6 +231,7 @@
         "y": 0
       },
       "id": 3,
+      "maxDataPoints": 12000,
       "options": {
         "legend": {
           "calcs": [],
@@ -246,7 +248,7 @@
       "pluginVersion": "12.0.0",
       "targets": [
         {
-          "query": "from(bucket: \"telemetry\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"csv_import\" and\n    r._field == \"Throttle Pos\"\n  )\n  |> aggregateWindow(every: 500ms, fn: mean, createEmpty: false)\n",
+          "query": "from(bucket: \"telemetry\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"csv_import\" and\n    r._field == \"Throttle Pos\"\n  )",
           "refId": "A",
           "datasource": {
             "type": "influxdb",
@@ -324,6 +326,7 @@
         "y": 8
       },
       "id": 5,
+      "maxDataPoints": 12000,
       "options": {
         "legend": {
           "calcs": [],
@@ -340,7 +343,7 @@
       "pluginVersion": "12.0.0",
       "targets": [
         {
-          "query": "from(bucket: \"telemetry\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"csv_import\" and\n    contains(value: r._field, set: [\"Tire Load FL\", \"Tire Load FR\", \"Tire Load RL\", \"Tire Load RR\"])\n  )\n  |> aggregateWindow(every: 500ms, fn: mean, createEmpty: false)",
+          "query": "from(bucket: \"telemetry\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"csv_import\" and\n    contains(value: r._field, set: [\"Tire Load FL\", \"Tire Load FR\", \"Tire Load RL\", \"Tire Load RR\"])\n  )",
           "refId": "A",
           "datasource": {
             "type": "influxdb",
@@ -417,6 +420,7 @@
         "y": 8
       },
       "id": 1,
+      "maxDataPoints": 12000,
       "options": {
         "legend": {
           "calcs": [],
@@ -437,7 +441,7 @@
             "type": "influxdb",
             "uid": "influx_db_uid-139"
           },
-          "query": "from(bucket: \"telemetry\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"csv_import\" and\n    r._field == \"Ground Speed\"\n  )\n  |> aggregateWindow(every: 500ms, fn: mean, createEmpty: false)\n",
+          "query": "from(bucket: \"telemetry\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"csv_import\" and\n    r._field == \"Ground Speed\"\n  )",
           "refId": "A"
         },
         {
@@ -559,6 +563,7 @@
         "y": 16
       },
       "id": 4,
+      "maxDataPoints": 12000,
       "options": {
         "legend": {
           "calcs": [],
@@ -575,7 +580,7 @@
       "pluginVersion": "12.0.0",
       "targets": [
         {
-          "query": "from(bucket: \"telemetry\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"csv_import\" and\n    r._field == \"Brake Pos\"\n  )\n  |> aggregateWindow(every: 500ms, fn: mean, createEmpty: false)\n",
+          "query": "from(bucket: \"telemetry\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"csv_import\" and\n    r._field == \"Brake Pos\"\n  )",
           "refId": "A",
           "datasource": {
             "type": "influxdb",
@@ -692,6 +697,7 @@
         "y": 16
       },
       "id": 2,
+      "maxDataPoints": 12000,
       "options": {
         "legend": {
           "calcs": [],
@@ -708,7 +714,7 @@
       "pluginVersion": "12.0.0",
       "targets": [
         {
-          "query": "from(bucket: \"telemetry\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"csv_import\" and\n    r._field == \"Steering Angle\"\n  )\n  |> aggregateWindow(every: 500ms, fn: mean, createEmpty: false)\n",
+          "query": "from(bucket: \"telemetry\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"csv_import\" and\n    r._field == \"Steering Angle\"\n  )",
           "refId": "A",
           "datasource": {
             "type": "influxdb",

@@ -90,6 +90,7 @@
         "y": 0
       },
       "id": 1,
+      "maxDataPoints": 12000,
       "options": {
         "legend": {
           "calcs": [],

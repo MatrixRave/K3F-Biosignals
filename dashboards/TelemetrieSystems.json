@@ -118,6 +118,7 @@
         "y": 0
       },
       "id": 4,
+      "maxDataPoints": 12000,
       "options": {
         "legend": {
           "calcs": [],
@@ -134,7 +135,7 @@
       "pluginVersion": "12.0.0",
       "targets": [
         {
-          "query": "from(bucket: \"telemetry\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"csv_import\" and\n    contains(value: r._field, set: [\"ABS Active\", \"TC Active\"])\n  )\n  |> aggregateWindow(every: 500ms, fn: mean, createEmpty: false)",
+          "query": "from(bucket: \"telemetry\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"csv_import\" and\n    contains(value: r._field, set: [\"ABS Active\", \"TC Active\"])\n  )",
           "refId": "A",
           "datasource": {
             "type": "influxdb",
@@ -211,6 +212,7 @@
         "y": 0
       },
       "id": 1,
+      "maxDataPoints": 12000,
       "options": {
         "legend": {
           "calcs": [],
@@ -231,7 +233,7 @@
             "type": "influxdb",
             "uid": "influx_db_uid-139"
           },
-          "query": "from(bucket: \"telemetry\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"csv_import\" and\n    contains(value: r._field, set: [\"KERS Charge\", \"KERS Deployed Energy\", \"KERS Input\"])\n  )\n  |> aggregateWindow(every: 500ms, fn: mean, createEmpty: false)\n",
+          "query": "from(bucket: \"telemetry\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"csv_import\" and\n    contains(value: r._field, set: [\"KERS Charge\", \"KERS Deployed Energy\", \"KERS Input\"])\n  )",
           "refId": "A"
         }
       ],
@@ -304,6 +306,7 @@
         "y": 8
       },
       "id": 3,
+      "maxDataPoints": 12000,
       "options": {
         "legend": {
           "calcs": [],
@@ -320,7 +323,7 @@
       "pluginVersion": "12.0.0",
       "targets": [
         {
-          "query": "from(bucket: \"telemetry\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"csv_import\" and\n    contains(value: r._field, set: [\"DRS Active\", \"DRS Available\"])\n  )\n  |> aggregateWindow(every: 500ms, fn: mean, createEmpty: false)",
+          "query": "from(bucket: \"telemetry\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"csv_import\" and\n    contains(value: r._field, set: [\"DRS Active\", \"DRS Available\"])\n  )",
           "refId": "A",
           "datasource": {
             "type": "influxdb",
@@ -397,6 +400,7 @@
         "y": 8
       },
       "id": 2,
+      "maxDataPoints": 12000,
       "options": {
         "legend": {
           "calcs": [],
@@ -413,7 +417,7 @@
       "pluginVersion": "12.0.0",
       "targets": [
         {
-          "query": "from(bucket: \"telemetry\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"csv_import\" and\n    contains(value: r._field, set: [\"ERS Is Charging\"])\n  )\n  |> aggregateWindow(every: 500ms, fn: mean, createEmpty: false)\n",
+          "query": "from(bucket: \"telemetry\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"csv_import\" and\n    contains(value: r._field, set: [\"ERS Is Charging\"])\n  )",
           "refId": "A",
           "datasource": {
             "type": "influxdb",
@@ -490,6 +494,7 @@
         "y": 16
       },
       "id": 5,
+      "maxDataPoints": 12000,
       "options": {
         "legend": {
           "calcs": [],
@@ -506,7 +511,7 @@
       "pluginVersion": "12.0.0",
       "targets": [
         {
-          "query": "from(bucket: \"telemetry\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"csv_import\" and\n    contains(value: r._field, set: [\"Lap Distance\"])\n  )\n  |> aggregateWindow(every: 500ms, fn: mean, createEmpty: false)",
+          "query": "from(bucket: \"telemetry\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"csv_import\" and\n    contains(value: r._field, set: [\"Lap Distance\"])\n  )",
           "refId": "A",
           "datasource": {
             "type": "influxdb",
